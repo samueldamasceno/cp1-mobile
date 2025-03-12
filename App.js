@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   const [nomeProduto, setNomeProduto] = useState('');
@@ -34,6 +34,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Image source={require('./assets/morango.png')} style={styles.imagem} />
       <Text style={styles.titulo}>Calculadora de Aumento</Text>
 
       <TextInput
@@ -111,5 +112,12 @@ const styles = StyleSheet.create({
   resultadoTexto: {
     fontSize: 16,
     marginBottom: 8,
+  },
+  imagem: {
+    resizeMode: "contain",
+    width: 250,
+    height: 250,
+    marginLeft: 50,
+    backgroundColor: 'transparent',
   },
 });
