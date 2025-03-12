@@ -3,7 +3,7 @@ import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   const [nomeProduto, setNomeProduto] = useState('');
-  const [valorOriginal, setValorOriginal] = useState(0);
+  const [valorOriginal, setValorOriginal] = useState('');
   const [porcentagemAumento, setPorcentagemAumento] = useState('');
   const [resultado, setResultado] = useState(null);
 
@@ -34,12 +34,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>Calculadora de Aumento</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Nome do produto"
         value={nomeProduto}
         onChangeText={setNomeProduto}
       />
+
       <TextInput
         style={styles.input}
         placeholder="Valor original"
@@ -47,6 +50,7 @@ export default function App() {
         onChangeText={setValorOriginal}
         keyboardType="numeric"
       />
+
       <TextInput
         style={styles.input}
         placeholder="Porcentagem de aumento"
@@ -54,14 +58,23 @@ export default function App() {
         onChangeText={setPorcentagemAumento}
         keyboardType="numeric"
       />
-      <Button title="Calcular" onPress={calcularAumento} />
+
+      <Button title="Calcular" onPress={calcularAumento} color="#007bff" />
 
       {resultado && (
         <View style={styles.resultadoContainer}>
-          <Text style={styles.resultadoText}>Valor original: {resultado.valorOriginal}</Text>
-          <Text style={styles.resultadoText}>Aumento percentual: {resultado.aumentoPercentual}%</Text>
-          <Text style={styles.resultadoText}>Novo valor: {resultado.novoValor}</Text>
-          <Text style={styles.resultadoText}>Valor do aumento: {resultado.valorAumento}</Text>
+          <Text style={styles.resultadoTexto}>
+            Valor original: R$ {resultado.valorOriginal.toFixed(2)}
+          </Text>
+          <Text style={styles.resultadoTexto}>
+            Aumento: {resultado.aumentoPercentual.toFixed(2)}%
+          </Text>
+          <Text style={styles.resultadoTexto}>
+            Novo valor: R$ {resultado.novoValor.toFixed(2)}
+          </Text>
+          <Text style={styles.resultadoTexto}>
+            Valor do aumento: R$ {resultado.valorAumento.toFixed(2)}
+          </Text>
         </View>
       )}
     </View>
@@ -73,5 +86,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
-  }
+    backgroundColor: '#FDFF93FF',
+  },
+  titulo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: 'black',
+  },
+  input: {
+    height: 45,
+    borderRadius: 10,
+    marginBottom: 15,
+    fontSize: 16,
+    backgroundColor: 'orange',
+  },
+  resultadoContainer: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: 'white',
+    borderRadius: 8,
+  },
+  resultadoTexto: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
 });
